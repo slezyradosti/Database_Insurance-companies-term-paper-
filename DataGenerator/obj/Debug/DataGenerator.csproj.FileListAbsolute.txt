@@ -1,0 +1,29 @@
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe.config
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.AssemblyReference.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.Properties.Resources.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.GenerateResource.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.CoreCompileInputs.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe.config
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.AssemblyReference.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.Properties.Resources.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.GenerateResource.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.CoreCompileInputs.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.SuggestedBindingRedirects.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe.config
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.exe
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\bin\Debug\DataGenerator.pdb
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.AssemblyReference.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.SuggestedBindingRedirects.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.Properties.Resources.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.GenerateResource.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.csproj.CoreCompileInputs.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.exe
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DataGenerator\obj\Debug\DataGenerator.pdb

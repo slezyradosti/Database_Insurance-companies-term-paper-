@@ -1,0 +1,191 @@
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe.config
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.pdb
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.AssemblyReference.cache
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.LogIn.resources
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.Properties.Resources.resources
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.GenerateResource.cache
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CoreCompileInputs.cache
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.exe
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.pdb
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.AddElement.resources
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.ClientContracts.resources
+C:\Users\Олег\source\repos\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.MainMenu.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe.config
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.pdb
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\OTRLibMono.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe.config
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.pdb
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.AssemblyReference.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.Properties.Resources.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.GenerateResource.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CoreCompileInputs.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CopyComplete
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.exe
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.pdb
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.AddOrEditElementForm.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.ClientContractsForm.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.LogInForm.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.MainMenuForm.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.SearchForm.resources
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\Interop.VSTOEE100.dll
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.ResolveComReference.cache
+C:\Users\olegs\Desktop\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.DiagramsForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe.config
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\OTRLibMono.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe.config
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.xml
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.AssemblyReference.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\Interop.VSTOEE100.dll
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.ResolveComReference.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.AddOrEditElementForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.ClientContractsForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.DiagramsForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.LogInForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.MainMenuForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.Properties.Resources.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.SearchForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.GenerateResource.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CoreCompileInputs.cache
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CopyComplete
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.exe
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.pdb
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.HelpForm.resources
+C:\Users\olegs\Desktop\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.SuggestedBindingRedirects.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe.config
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.exe
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DB_Kursach.pdb
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\OTRLibMono.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.pdb
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\DataGenerator.exe.config
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\BouncyCastle.Crypto.pdb
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\EPPlus.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.Bcl.HashCode.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\Npgsql.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Buffers.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Collections.Immutable.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Memory.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Text.Json.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Channels.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\bin\Debug\System.ValueTuple.xml
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.AssemblyReference.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.SuggestedBindingRedirects.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\Interop.VSTOEE100.dll
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.ResolveComReference.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.AddOrEditElementForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.ClientContractsForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.DiagramsForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.HelpForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.LogInForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.MainMenuForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.Properties.Resources.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.SearchForm.resources
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.GenerateResource.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CoreCompileInputs.cache
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.csproj.CopyComplete
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.exe
+C:\Users\Олег\OneDrive\Desktop\last DB_Kursach\DB_Kursach Not ASYNC\DB_Kursach\DB_Kursach\DB_Kursach\obj\Debug\DB_Kursach.pdb

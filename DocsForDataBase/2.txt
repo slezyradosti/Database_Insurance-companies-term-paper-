@@ -1,0 +1,789 @@
+CREATE DOMAIN op_year AS integer
+	CHECK(VALUE BETWEEN 1850 AND CAST(date_part('year', current_date) AS integer)) NOT NULL;
+	
+CREATE INDEX idx_opening_year ON companies(opening_year);
+CREATE INDEX idx_branch_opening_year ON branches(opening_year);
+CREATE INDEX idx_client_date_of_birth ON clients(date_of_birth);
+CREATE INDEX idx_date_of_onclusion_contract ON contracts(date_of_onclusion_contract);
+CREATE INDEX idx_sum_of_contract ON contracts(sum_of_contract);
+
+--триггер сотрудники - филиалы 1
+CREATE  OR REPLACE FUNCTION add_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+
+	UPDATE branches
+        SET number_of_employees = number_of_employees + 1
+       WHERE branch_id = NEW.branch_id;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER add_number_emplyees ON employees;
+
+CREATE TRIGGER add_number_emplyees AFTER INSERT ON employees
+FOR EACH ROW EXECUTE PROCEDURE add_number_employee_to_branch();
+
+--триггер сотрудники - филиалы 2
+CREATE OR REPLACE FUNCTION remove_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+--ПРОВЕРКА НА ОТРИЦАТЕЛЬНОЕ ЧИСЛО?
+	--IF number_of_employees > 0 THEN
+	UPDATE branches
+        SET number_of_employees = number_of_employees - 1
+       	WHERE branch_id = OLD.branch_id;
+		RETURN OLD;
+		
+	--ELSE
+	--UPDATE branches
+		--SET number_of_employees = 0
+       	--WHERE branch_id = OLD.branch_id;
+		--RETURN OLD;
+	
+	--END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_number_emplyees AFTER DELETE ON employees
+FOR EACH ROW EXECUTE PROCEDURE remove_number_employee_to_branch();
+
+--триггер сотрудники - филиалы 3
+CREATE OR REPLACE FUNCTION update_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	UPDATE branches
+        SET number_of_employees = number_of_employees - 1
+       	WHERE branch_id = OLD.branch_id;
+	UPDATE branches
+		SET number_of_employees = number_of_employees + 1
+       WHERE branch_id = NEW.branch_id;
+		RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_number_emplyees AFTER UPDATE ON employees
+FOR EACH ROW EXECUTE PROCEDURE update_number_employee_to_branch();
+
+--триггер для филиала 1
+--если уже был 1 филиал у компании, значит он был главным, значит остальные не главные
+CREATE OR REPLACE FUNCTION insert_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	IF ( SELECT COUNT(*) FROM branches
+  	WHERE (branches.company_id = new.company_id)) >= 1 THEN
+		new.is_main = false;
+		RETURN NEW;
+	ELSE
+		new.is_main = true;
+		RETURN NEW;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insert_ismain_branch BEFORE INSERT ON branches
+FOR EACH ROW EXECUTE PROCEDURE insert_ismain_branch();
+
+
+--триггер для филиала 2
+--после удаления главного филиала, следующий филиал по минимальному году становится главным
+CREATE OR REPLACE FUNCTION remove_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	IF (OLD.is_main = true) THEN
+		UPDATE branches
+		SET is_main = true
+		WHERE branches.opening_year = (SELECT MIN(branches.opening_year) FROM branches WHERE old.company_id = branches.company_id); --AND old.company_id = branches.company_id; 
+	--RETURN NEW;
+	END IF;
+	RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_ismain_branch AFTER DELETE ON branches
+FOR EACH ROW EXECUTE PROCEDURE remove_ismain_branch();
+
+--триггер для филиала 3
+--после обвновления главного филиала, следующий филиал по минимальному году становится главным п этот становится обычным
+CREATE OR REPLACE FUNCTION update_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN --если изменяемый филиал был главным -> главным станет другой
+	IF (OLD.is_main = true) THEN
+		UPDATE branches
+		SET is_main = true
+		WHERE branches.opening_year = (SELECT MIN(branches.opening_year) FROM branches WHERE old.company_id = branches.company_id); --AND old.company_id = branches.company_id; 
+	
+	END IF;
+
+	IF ( SELECT COUNT(*) FROM branches -- если у другой компании уже больше 1 филиала (первый всегда главный)
+  		WHERE (branches.company_id = new.company_id)) > 1 THEN -- то обновленный будет обычным
+			UPDATE branches
+			SET is_main = false
+			WHERE branch_id = new.branch_id;
+	ELSE -- иначе обновленный станет главным
+		UPDATE branches
+		SET is_main = true
+		WHERE branch_id = new.branch_id;
+	END IF;
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_ismain_branch AFTER UPDATE ON branches
+FOR EACH ROW 
+WHEN (OLD.company_id is DISTINCT FROM NEW.company_id) 
+EXECUTE PROCEDURE update_ismain_branch();
+
+--создание таблиц
+CREATE TABLE property_types
+(	type_id serial NOT NULL,
+	property_type text COLLATE pg_catalog."default" NOT NULL,
+ 	CONSTRAINT typeid_pkey PRIMARY KEY (type_id),
+ 	CONSTRAINT property_uniq UNIQUE (property_type)
+);
+
+CREATE TABLE cities
+(
+	city_id serial NOT NULL,
+	city text COLLATE pg_catalog."default" NOT NULL,
+	CONSTRAINT cityid_pkey PRIMARY KEY (city_id),
+ 	CONSTRAINT city_uniq UNIQUE (city)
+);
+
+CREATE TABLE companies
+(
+	company_id serial NOT NULL,
+	company_name text COLLATE pg_catalog."default" NOT NULL,
+	type_id integer NOT NULL,
+	license_number integer NOT NULL,
+	license_expiration_date date NOT NULL,
+	city_id integer NOT NULL,
+	address text COLLATE pg_catalog."default" NOT NULL,
+	phone_number varchar(10) NOT NULL,
+	opening_year op_year,
+	license_photo bytea,
+	CHECK (CAST(date_part('year', current_date) AS integer) > opening_year),
+	CONSTRAINT company_pkey PRIMARY KEY (company_id),
+	CONSTRAINT name_uniq UNIQUE (company_name),
+	CONSTRAINT typeid_fkey FOREIGN KEY (type_id)
+		REFERENCES property_types (type_id)
+		ON DELETE CASCADE,
+	CONSTRAINT lnumber_uniq UNIQUE (license_number),
+	CONSTRAINT cityid_fkey FOREIGN KEY (city_id)
+		REFERENCES cities (city_id)
+		ON DELETE CASCADE,
+	CONSTRAINT phnumber_uniq UNIQUE (phone_number)
+);
+
+CREATE TABLE types_of_insurance
+(
+	type_of_insurance_id serial NOT NULL,
+	type_of_insurance text COLLATE pg_catalog."default" NOT NULL,
+	CONSTRAINT instypeid_pkey PRIMARY KEY (type_of_insurance_id),
+ 	CONSTRAINT instype_uniq UNIQUE (type_of_insurance)
+);
+
+CREATE TABLE social_status_of_clients
+(
+	social_status_id serial NOT NULL,
+	social_status text COLLATE pg_catalog."default" NOT NULL,
+	CONSTRAINT socstatus_pkey PRIMARY KEY (social_status_id),
+ 	CONSTRAINT socstatus_uniq UNIQUE (social_status)
+);
+
+CREATE TABLE branches
+(
+	branch_id serial NOT NULL,
+	branch_name text COLLATE pg_catalog."default" NOT NULL,
+	company_id integer NOT NULL, --ref
+	city_id integer NOT NULL, --ref
+	is_main boolean NOT NULL, -- only one 'true' 
+	address text COLLATE pg_catalog."default" NOT NULL,
+	phone_number varchar(10) NOT NULL,
+	opening_year op_year,
+	number_of_employees integer NOT NULL DEFAULT 0, --не даю это поле на ввод, добавил триггер
+	CHECK(opening_year > 0),
+	CONSTRAINT branchid_pkey PRIMARY KEY (branch_id),
+ 	--CONSTRAINT branchname_uniq UNIQUE (branch_name),
+	CONSTRAINT companyid_fkey FOREIGN KEY (company_id)
+		REFERENCES companies (company_id)
+		ON DELETE CASCADE,
+	CONSTRAINT cityid_fkey FOREIGN KEY (city_id)
+		REFERENCES cities (city_id)
+		ON DELETE CASCADE,
+	CONSTRAINT branchphnumber_uniq UNIQUE (phone_number),
+	CONSTRAINT branchNameAndCity_uniq UNIQUE (branch_name, city_id)
+);
+
+CREATE TABLE employees
+(
+	employee_id serial NOT NULL,
+	branch_id integer NOT NULL,
+	surname text COLLATE pg_catalog."default" NOT NULL,
+	firstname text COLLATE pg_catalog."default" NOT NULL,
+	lastname text COLLATE pg_catalog."default" NOT NULL,
+	CONSTRAINT employee_pkey PRIMARY KEY (employee_id),
+	CONSTRAINT branchid_fkey FOREIGN KEY (branch_id)
+		REFERENCES branches (branch_id)
+		ON DELETE CASCADE,
+ 	CONSTRAINT fullname_uniq UNIQUE (surname, firstname, lastname)
+);
+CREATE TABLE clients
+(
+	client_id serial NOT NULL,
+	surname text COLLATE pg_catalog."default" NOT NULL,
+	firstname text COLLATE pg_catalog."default" NOT NULL,
+	lastname text COLLATE pg_catalog."default" NOT NULL,
+	date_of_birth date NOT NULL,
+	social_status_id integer NOT NULL, --ref
+	city_id integer NOT NULL, --ref
+	address text NOT NULL,
+	phone_number varchar(10) NOT NULL,
+	CHECK (date_of_birth BETWEEN (current_date - (365*120))::date AND (current_date - (365*18))), -- 18-120 лет 
+	CONSTRAINT clientid_pkey PRIMARY KEY (client_id),
+	CONSTRAINT social_statusid_fkey FOREIGN KEY (social_status_id)
+		REFERENCES social_status_of_clients (social_status_id)
+		ON DELETE CASCADE,
+	CONSTRAINT clientcityid_fkey FOREIGN KEY (city_id)
+		REFERENCES cities (city_id)
+		ON DELETE CASCADE,
+	CONSTRAINT clientchphnumber_uniq UNIQUE (phone_number),
+ 	CONSTRAINT clientfullname_uniq UNIQUE (surname, firstname, lastname)
+);
+
+CREATE TABLE contracts
+(
+	contract_id serial NOT NULL,
+	type_of_insurance_id integer NOT NULL, --ref
+	employee_id serial NOT NULL, --ref
+	client_id integer NOT NULL, --ref
+	text_of_contract text NOT NULL,
+	sum_of_contract integer NOT NULL,
+	date_of_onclusion_contract date DEFAULT(current_date) NOT NULL,
+	CHECK (sum_of_contract > 0),
+	CHECK (date_of_onclusion_contract BETWEEN (current_date - 180) AND current_date), --180 дней
+	CONSTRAINT contract_id PRIMARY KEY (contract_id),
+	CONSTRAINT instype_fkey FOREIGN KEY (type_of_insurance_id)
+		REFERENCES types_of_insurance (type_of_insurance_id)
+		ON DELETE CASCADE,
+	CONSTRAINT employeeid_fkey FOREIGN KEY (employee_id)
+		REFERENCES employees (employee_id)
+		ON DELETE CASCADE,
+	CONSTRAINT contract_clientid_fkey FOREIGN KEY (client_id)
+		REFERENCES clients (client_id)
+		ON DELETE CASCADE
+	
+);
+
+DROP  TABLE IF EXISTS property_types CASCADE;
+DROP  TABLE IF EXISTS cities CASCADE;
+DROP  TABLE IF EXISTS companies CASCADE;
+DROP  TABLE IF EXISTS types_of_insurance CASCADE;
+DROP  TABLE IF EXISTS social_status_of_clients CASCADE;
+DROP  TABLE IF EXISTS branches CASCADE;
+DROP  TABLE IF EXISTS employees CASCADE;
+DROP  TABLE IF EXISTS clients CASCADE;
+DROP  TABLE IF EXISTS contracts CASCADE;
+
+--INSERT IGNORE INTO Table2(Id, Name) SELECT Id, Name FROM Table1
+
+TRUNCATE TABLE property_types RESTART IDENTITY CASCADE;
+TRUNCATE TABLE cities RESTART IDENTITY CASCADE;
+TRUNCATE TABLE companies RESTART IDENTITY CASCADE;
+TRUNCATE TABLE types_of_insurance RESTART IDENTITY CASCADE;
+TRUNCATE TABLE social_status_of_clients RESTART IDENTITY CASCADE;
+TRUNCATE TABLE branches RESTART IDENTITY CASCADE;
+TRUNCATE TABLE employees RESTART IDENTITY CASCADE;
+TRUNCATE TABLE clients RESTART IDENTITY CASCADE;
+TRUNCATE TABLE contracts RESTART IDENTITY CASCADE;
+
+
+INSERT INTO public.property_types(property_type)
+VALUES
+	('ААА'),
+	('ООО'),
+	('УУУ'),
+	('ИИИ'),
+	('ЭЭЭ'),
+	('ЫЫЫ'),
+	('ЪЪЪ');
+
+INSERT INTO public.cities(city)
+VALUES
+		('Астрахань'),
+	('Кузнецк'),
+	('Лобня'),
+	('Канск'),
+	('Туапсе'),
+	('Черкесск'),
+	('Саранск'),
+	('Элиста');
+	
+	INSERT INTO public.cities(city)
+VALUES ('Волгоград');
+
+INSERT INTO public.types_of_insurance(type_of_insurance)
+VALUES
+		('Страхование от несчастных случаев и болезней'),
+	('Медицинское страхование'),
+	('Страхование средств наземного транспорта'),
+	('Страхование средств железнодорожного транспорта.'),
+	('Страхование средств воздушного транспорта'),
+	('Страхование средств водного транспорта'),
+	('Страхование грузов'),
+	('Сельскохозяйственное страхование'),
+	('Страхование имущества юридических лиц'),
+	('Страхование имущества граждан'),
+	('Страхование предпринимательских рисков'),
+	('Страхование финансовых рисков');
+
+INSERT INTO public.social_status_of_clients(social_status)
+VALUES
+		('крестьянин'),
+	('мещанин'),
+	('личный почётный гражданин'),
+	('потомственный почётный гражданин'),
+	('личный дворянин'),
+	('потомственный дворянин'),
+	('рабочий'),
+	('служащий');
+
+
+INSERT INTO public.companies(company_name, type_id, license_number, license_expiration_date, city_id, address, phone_number, opening_year)
+VALUES 
+		('Аднромеда', 2, 3425, '2023-07-22'::date, 3, 'шоссе Ломоносова, 05', 45345345, 1950),
+	('Магма', 3, 3825, '2028-07-07'::date, 6, 'въезд Ладыгина, 36', 45956345, 2000),
+	('Зевс', 1, 3525, '2022-11-23'::date, 1, 'пер. Балканская, 37', 45356345, 2003),
+	('Марс', 5, 3188, '2025-01-01'::date, 1, 'ул. Чехова, 80', 451235345, 1999),
+	('Венера', 2, 1111, '2030-09-25'::date, 2, 'въезд Домодедовская, 13', 8477364, 1988);
+
+INSERT INTO public.branches(branch_name, company_id, city_id, is_main, address, phone_number, opening_year, number_of_employees)
+VALUES 
+		('Аднромеда1', 1, 4, true, 'проезд Чехова, 22', 792211100, 1950, default),
+	('Магма1', 2, 3, true, 'пр. Балканская, 32', 7922111050, 2000, 33),
+	('Аднромеда2', 1, 2, false, 'въезд Гоголя, 47', 7922111055, 1950, 100),
+	('Аднромеда3', 1, 1, false, 'бульвар Будапештсткая, 87', 717283, 1950, 34),
+	('Зевс1', 3, 2, true, 'пл. Гагарина, 43', 7389680, 2003, 100),
+	('Марс1', 4, 3, true, 'шоссе Бухарестская, 63', 73428994, 1999, 100),
+	('Марс2', 4, 4, false, 'спуск Будапештсткая, 84', 7428161, 1999, 3),
+	('Марс3', 4, 5, false, 'бульвар Чехова, 30', 7780776, 1999, 1),
+	('Марс4', 4, 6, false, 'пер. Балканская, 20', 7635718, 1999, 44),
+	('Венера1', 5, 1, true, 'ул. 1905 года, 98', 79286033, 1988, 50);
+
+
+INSERT INTO public.employees(branch_id, surname, firstname, lastname)
+VALUES
+	(1, 'Белоусов', 'Корнелий', 'Арсеньевич'),
+	(4, 'Лыткин', 'Юлий', 'Артёмович'),
+	(4, 'Костин', 'Ираклий', 'Михайлович'),
+	(1, 'Ситников', 'Руслан', 'Тимурович'),
+	(1, 'Фомичёв', 'Аристарх', 'Рудольфович'),
+	(3, 'Логинов', 'Август', 'Ростиславович'),
+	(2, 'Никифоров', 'Артем', 'Эдуардович'),
+	(3, 'Петров', 'Нинель', 'Феликсович'),
+	(2, 'Чернов', 'Леонид', 'Всеволодович'),
+	(1, 'Стрелков', 'Мирон', 'Проклович'),
+	(1, 'Лаврентьев', 'Любовь', 'Петрович'),
+	(10, 'Пахомов', 'Севастьян', 'Анатольевич'),
+	(1, 'Хохлов', 'Ипполит', 'Давидович'),
+	(2, 'Стрелков', 'Мартин', 'Борисович'),
+	(10, 'Трофимов', 'Эрнест', 'Денисович'),
+	(2, 'Ефимов', 'Ярослав', 'Филатович'),
+	(2, 'Фролов', 'Любовь', 'Альбертович'),
+	(9, 'Кудрявцев', 'Карл', 'Львович'),
+	(1, 'Семёнов', 'Лука', 'Яковлевич'),
+	(3, 'Зыков', 'Аким', 'Леонидович'),
+	(3, 'Матвеев', 'Архип', 'Агафонович'),
+	(7, 'Иванков', 'Аркадий', 'Артемович'),
+	(8, 'Максимов', 'Ипполит', 'Альвианович'),
+	(1, 'Цветков', 'Назарий', 'Антонинович'),
+	(4, 'Матвеев', 'Борис', 'Демьянович'),
+	(1, 'Савельев', 'Панкрат', 'Григорьевич'),
+	(10, 'Беляков', 'Макар', 'Вениаминович'),
+	(3, 'Ситников', 'Исак', 'Еремеевич'),
+	(2, 'Данилов', 'Осип', 'Богуславович'),
+	(9, 'Мартынов', 'Игнат', 'Федотович'),
+	(1, 'Титов','Вадим', 'Иванович'),
+	(1, 'Новиков', 'Пантелеймон', 'Федорович'),
+	(1, 'Власов', 'Юстин', 'Рудольфович'),
+	(10, 'Соколов', 'Гарри', 'Рубенович'),
+	(1, 'Кабанов', 'Тимур', 'Дмитрьевич'),
+	(9, 'Быков', 'Алексей', 'Рудольфович'),
+	(1, 'Лукин', 'Филипп', 'Германович'),
+	(6, 'Рыбаков', 'Людвиг', 'Альвианович'),
+	(2, 'Кузьмин', 'Аким', 'Оскарович'),
+	(9, 'Владимиров', 'Иосиф', 'Артёмович'),
+	(8, 'Самойлов', 'Виктор', 'Семенович'),
+	(3, 'Ситников', 'Исак', 'Якунович'),
+	(3, 'Рожков', 'Юстиниан', 'Викторович'),
+	(7, 'Лапин', 'Корнелий', 'Артёмович'),
+	(10, 'Якушев', 'Герасим', 'Протасьевич'),
+	(9, 'Кудрявцев', 'Мартын', 'Богуславович'),
+	(4, 'Беляков', 'Святослав', 'Гордеевич'),
+	(10, 'Журавлёв', 'Владлен', 'Васильевич'),
+	(2, 'Уваров', 'Всеволод', 'Ильяович'),
+	(9, 'Гаврилов ', 'Иосиф', 'Авдеевич'),
+	(3, 'Якушев', 'Корней', 'Григорьевич'),
+	(7, 'Кононов', 'Вилен', 'Оскарович'),
+	(5, 'Артемьев', 'Аким', 'Тихонович'),
+	(5, 'Харитонов', 'Олег', 'Альбертович'),
+	(5, 'Дьячков', 'Арсен', 'Дамирович'),
+	(5, 'Ковалёв', 'Гордий', 'Якунович'),
+	(8, 'Абрамов', 'Архип', 'Максович');
+
+INSERT INTO public.clients(surname, firstname, lastname, date_of_birth, social_status_id, city_id, address, phone_number)
+VALUES
+		('Иванков', 'Аркадий', 'Артемович', '1993-04-05'::date, 2, 3, 'ул. 1905 года, 98', 15353),
+	('Максимов', 'Ипполит', 'Альвианович', '2003-12-24'::date, 2, 4, 'ул. 1905 года, 98', 56756),
+	('Цветков', 'Назарий', 'Антонинович', '2001-02-08'::date, 1, 2, 'ул. 1905 года, 98', 8967),
+	('Матвеев', 'Борис', 'Демьянович', '1973-12-05'::date, 4, 5, 'ул. 1905 года, 98', 69778),
+	('Савельев', 'Панкрат ', 'Григорьевич', '1970-06-12'::date, 3, 4, 'ул. 1905 года, 98', 678),
+	('Беляков', 'Макар', 'Вениаминович', '1973-02-04'::date, 6, 2, 'ул. 1905 года, 98', 6786),
+	('Ситников', 'Исак', 'Еремеевич', '1994-05-13'::date, 2, 2, 'ул. 1905 года, 98', 6782),
+	('Данилов', 'Осип', 'Богуславович', '2001-02-07'::date, 1, 2, 'ул. 1905 года, 98', 678678),
+	('Мартынов', 'Игнат', 'Федотович', '1995-07-28'::date, 4, 2, 'спуск Будапештсткая, 84', 8698),
+	('Титов', 'Вадим', 'Иванович', '1986-05-11'::date, 3, 4, 'пр. Балканская, 32', 345457),
+	('Новиков ', 'Пантелеймон ', 'Федорович', '1974-09-27'::date, 3, 1, 'спуск Будапештсткая, 84', 67867),
+	('Власов', 'Юстин', 'Рудольфович', '1996-09-27'::date, 2, 2, 'пр. Балканская, 32', 65756),
+	('Соколов', 'Гарри', 'Рубенович', '1985-04-03'::date, 2, 2, 'спуск Будапештсткая, 84', 35653),
+	('Кабанов', 'Тимур', 'Дмитрьевич', '1992-03-05'::date, 4, 4, 'спуск Будапештсткая, 84', 699679),
+	('Быков', 'Алексей', 'Рудольфович', '2004-03-09'::date, 5, 2, 'пр. Балканская, 32', 566798),
+	('Лукин', 'Филипп', 'Германович', '1985-07-04'::date, 1, 1, 'ул. 1905 года, 98', 679679),
+	('Рыбаков', 'Людвиг', 'Альвианович', '1992-06-04'::date, 1, 5, 'пр. Балканская, 32', 24545),
+	('Кузьмин', 'Аким', 'Оскарович', '1975-10-09'::date, 5, 5, 'проезд Чехова, 22', 5685),
+	('Владимиров', 'Иосиф', 'Артёмович', '2001-08-06'::date, 6, 6, 'проезд Чехова, 22', 43578553),
+	('Самойлов', 'Виктор', 'Семенович', '1993-12-03'::date, 6, 2, 'ул. 1905 года, 98', 578),
+	('Ситников', 'Исак', 'Якунович', '1993-04-05'::date, 3, 2, 'ул. 1905 года, 98', 356565),
+	('Рожков', 'Юстиниан', 'Викторович', '1994-11-07 '::date, 2, 1, 'спуск Будапештсткая, 84', 15345653),
+	('Лапин', 'Корнелий', 'Артёмович', '2001-01-07'::date, 2, 3, 'проезд Чехова, 22', 53986),
+	('Якушев', 'Герасим', 'Протасьевич', '1994-12-06'::date, 4, 2, 'проезд Чехова, 22', 586585),
+	('Кудрявцев', 'Мартын', 'Богуславович', '2003-11-18'::date, 6, 3, 'проезд Чехова, 22', 53656),
+	('Беляков', 'Святослав', 'Гордеевич', '2003-11-08'::date, 6, 3, 'пр. Балканская, 32', 87988),
+	('Журавлёв', 'Владлен', 'Васильевич', '1993-06-05'::date, 1, 2, 'пр. Балканская, 32', 879789),
+	('Уваров', 'Всеволод', 'Ильяович', '1998-02-08'::date, 1, 1, 'ул. 1905 года, 98', 5865),
+	('Гаврилов', 'Иосиф', 'Авдеевич', '2003-04-14'::date, 2, 6, 'проезд Чехова, 22', 89768);
+
+INSERT INTO public.contracts(type_of_insurance_id, employee_id, client_id, text_of_contract, sum_of_contract, date_of_onclusion_contract)
+VALUES
+		(1, 2, 3, 'С другой стороны укрепление и развитие', 13541, '2022-04-13'::date),
+	(3, 6, 1, 'Разнообразный и богатый опыт ', 234335, '2022-04-12'::date),
+	(5, 7, 2, 'Не следует, однако ', 23452, '2022-04-09'::date),
+	(3, 9, 5, 'Равным образом рамки', 4255, '2022-04-15'::date),
+	(5, 11, 4, 'обучения кадров влечет за собой процесс ', 2455, '2022-04-11'::date),
+	(4, 5, 6, 'соответствует насущным потребностям', 2452, '2022-04-08'::date),
+	(4, 6, 7, 'обеспечивает широкому кругу (специалистов)', 24523, '2022-04-011'::date),
+	(3, 8, 7, 'развитие различных форм деятельности ', 5856, '2022-04-010'::date),
+	(1, 7, 8, 'модернизации системы обучения кадров', 7899, '2022-04-09'::date),
+	(2, 4, 9, 'с широким активом ', 6797, '2022-04-08'::date);
+	
+SELECT * FROM branches;
+SELECT * FROM cities;
+SELECT * FROM clients;
+SELECT * FROM companies;
+SELECT * FROM contracts;
+SELECT * FROM employees;
+SELECT * FROM property_types;
+SELECT * FROM social_status_of_clients;
+SELECT * FROM types_of_insurance;
+
+SELECT COUNT (*) FROM types_of_insurance;
+
+SELECT (company_name) FROM companies
+WHERE company_id = 2;
+--
+SELECT city FROM cities s 
+	WHERE EXISTS (SELECT city_id FROM companies c
+				 Where  s.city_id = c.city_id);
+--
+
+
+CREATE TRIGGER t_user AFTER INSERT OR UPDATE OR DELETE ON employees 
+FOR EACH ROW 
+BEGIN
+	INSERT INTO branches(number_of_employees) VALUES(SELECT COUNT(*) FROM employees WHERE (employees.branch_id = branches.branch_id))
+END;
+
+INSERT INTO public.companies(company_name, type_id, license_number, license_expiration_date, city_id, address, phone_number, opening_year) 
+VALUES ('Абсолют Страхование', 4, 7970, '2023-07-22', 16, 'спуск Славы, 93', '137663098', 1956);
+
+
+
+"SELECT types_of_insurance.type_of_insurance, employees.surname, employees.firstname, employees.lastname, text_of_contract, sum_of_contract, date_of_onclusion_contract, (SELECT (branch_name) from branches b where b.branch_id = employees.branch_id) " +  
+"FROM contracts " +
+"LEFT JOIN types_of_insurance ON contracts.type_of_insurance_id =types_of_insurance.type_of_insurance_id " +
+"LEFT JOIN employees ON contracts.employee_id=employees.employee_id " +	
+"WHERE contracts.client_id = 1 " +
+"ORDER BY contract_id ASC;"
+
+
+
+CREATE  OR REPLACE FUNCTION add_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+
+	UPDATE branches
+        SET number_of_employees = number_of_employees + 1
+       WHERE branch_id = NEW.branch_id;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER add_number_emplyees ON employees;
+
+CREATE TRIGGER add_number_emplyees AFTER INSERT ON employees
+FOR EACH ROW EXECUTE PROCEDURE add_number_employee_to_branch();
+
+	
+SELECT number_of_employees FROM branches
+WHERE branch_id = 1;
+
+INSERT INTO public.employees(branch_id, surname, firstname, lastname)
+VALUES
+	(1, 'Белоrуahysaсkов', 'Кgl', 'Аkрhс');
+
+
+
+CREATE OR REPLACE FUNCTION remove_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+--ПРОВЕРКА НА ОТРИЦАТЕЛЬНОЕ ЧИСЛО?
+	--IF number_of_employees > 0 THEN
+	UPDATE branches
+        SET number_of_employees = number_of_employees - 1
+       	WHERE branch_id = OLD.branch_id;
+		RETURN OLD;
+		
+	--ELSE
+	--UPDATE branches
+		--SET number_of_employees = 0
+       	--WHERE branch_id = OLD.branch_id;
+		--RETURN OLD;
+	
+	--END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER remove_number_emplyees AFTER DELETE ON employees
+FOR EACH ROW EXECUTE PROCEDURE remove_number_employee_to_branch();
+
+DELETE FROM public.employees
+WHERE branch_id = 2;
+
+
+CREATE OR REPLACE FUNCTION update_number_employee_to_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	UPDATE branches
+        SET number_of_employees = number_of_employees - 1
+       	WHERE branch_id = OLD.branch_id;
+	UPDATE branches
+		SET number_of_employees = number_of_employees + 1
+       WHERE branch_id = NEW.branch_id;
+		RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_number_emplyees AFTER UPDATE ON employees
+FOR EACH ROW EXECUTE PROCEDURE update_number_employee_to_branch();
+
+UPDATE public.employees
+SET branch_id = 1
+WHERE branch_id = 2;
+
+--если уже был 1 филиал у компании, значит он был главным, значит остальные не главные
+CREATE OR REPLACE FUNCTION insert_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	IF ( SELECT COUNT(*) FROM branches
+  	WHERE (branches.company_id = new.company_id)) >= 1 THEN
+		new.is_main = false;	   
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insert_ismain_branch BEFORE INSERT ON branches
+FOR EACH ROW EXECUTE PROCEDURE insert_ismain_branch();
+
+DROP TRIGGER insert_ismain_branch BEFORE INSERT ON branches;
+
+INSERT INTO public.branches(branch_name, company_id, city_id, is_main, address, phone_number, opening_year, number_of_employees)
+VALUES 
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 75748909, 1950, default),
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 711748909, 1952, default),
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 72748909, 1953, default),
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 73748909, 1954, default),
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 74748909, 1955, default),
+		('Аднромеда1', 1, 4, false, 'проезд Чехова, 22', 76748909, 1956, default);
+		('Аднромеда1', 2, 4, false, 'проезд Чехова, 22', 79748909, 1960, default);
+		
+SELECT * FROM branches
+WHERE company_id = 2
+ORDER BY branch_name ASC;
+
+DELETE FROM branches WHERE company_id = 2;
+
+--после удаления главного филиала, следующий филиал по минимальному году становится главным
+CREATE OR REPLACE FUNCTION remove_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	IF (OLD.is_main = true) THEN
+		UPDATE branches
+		SET is_main = true
+		WHERE branches.opening_year = (SELECT MIN(branches.opening_year) FROM branches WHERE old.company_id = branches.company_id); --AND old.company_id = branches.company_id; 
+	
+	END IF;
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_ismain_branch AFTER DELETE ON branches
+FOR EACH ROW EXECUTE PROCEDURE remove_ismain_branch();
+
+DROP TRIGGER delete_ismain_branch ON branches;
+
+--след компания с минимашльным годом будет глвной
+UPDATE branches
+	SET is_main = true
+	WHERE branches.opening_year = (SELECT MIN(branches.opening_year) FROM branches);
+
+
+		UPDATE branches
+		SET (SELECT MIN(branches.opening_year) FROM branches
+  		WHERE branches.company_id) = 13 = 1911;
+		SELECT branch_name, is_main, MIN(branches.opening_year), company_id FROM branches
+  		WHERE branches.company_id IN (1,2)
+		--WHERE branches.is_main = true
+		GROUP BY branch_id
+		ORDER BY branches.opening_year ASC;
+		
+DELETE FROM public.branches
+WHERE branches.is_main = true AND branches.company_id = 2;
+
+TRUNCATE TABLE branches RESTART IDENTITY CASCADE;
+
+--триггер для филиала 3
+--после обвновления главного филиала, следующий филиал по минимальному году становится главным п этот становится обычным
+CREATE OR REPLACE FUNCTION update_ismain_branch()
+RETURNS TRIGGER
+AS $$
+BEGIN --если изменяемый филиал был главным -> главным станет другой
+	IF (OLD.is_main = true) THEN
+		UPDATE branches
+		SET is_main = true
+		WHERE branches.opening_year = (SELECT MIN(branches.opening_year) FROM branches WHERE old.company_id = branches.company_id); --AND old.company_id = branches.company_id; 
+	
+	END IF;
+
+	IF ( SELECT COUNT(*) FROM branches -- если у другой компании уже больше 1 филиала (первый всегда главный)
+  		WHERE (branches.company_id = new.company_id)) > 1 THEN -- то обновленный будет обычным
+			UPDATE branches
+			SET is_main = false
+			WHERE branch_id = new.branch_id;
+	ELSE -- иначе обновленный станет главным
+		UPDATE branches
+		SET is_main = true
+		WHERE branch_id = new.branch_id;
+	END IF;
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_ismain_branch AFTER UPDATE ON branches
+FOR EACH ROW 
+WHEN (OLD.company_id is DISTINCT FROM NEW.company_id) 
+EXECUTE PROCEDURE update_ismain_branch();
+
+DROP TRIGGER update_ismain_branch ON branches;
+
+
+UPDATE branches SET company_id = 2 WHERE branches.is_main = true AND branches.company_id = 1;
+
+
+-- представления (запрос без параметров) для таблиц
+CREATE VIEW all_companies_view AS
+SELECT company_id, company_name, property_types.property_type, license_number, license_expiration_date, cities.city, address, phone_number, opening_year, license_photo FROM companies
+INNER JOIN property_types ON companies.type_id=property_types.type_id
+INNER JOIN cities ON companies.city_id=cities.city_id
+ORDER BY company_id ASC;
+
+--drop view all_companies_view;
+
+CREATE VIEW all_property_types_view AS
+SELECT type_id, property_type FROM property_types;
+
+CREATE VIEW all_branches_view AS
+SELECT branch_id, branch_name, companies.company_name, cities.city, is_main, branches.address, branches.phone_number, branches.opening_year, number_of_employees FROM branches
+INNER JOIN companies ON branches.company_id=companies.company_id
+INNER JOIN cities ON branches.city_id=cities.city_id
+ORDER BY branch_id ASC;
+
+CREATE VIEW all_employees_view AS
+SELECT employee_id, employees.surname, employees.firstname, employees.lastname, concat (branches.branch_name, ', ', cities.city) branchAndCity 
+FROM employees
+INNER JOIN branches ON employees.branch_id=branches.branch_id
+INNER JOIN cities ON branches.city_id=cities.city_id
+ORDER BY employee_id ASC;
+
+CREATE VIEW all_contracts_view AS
+SELECT contract_id, types_of_insurance.type_of_insurance, concat (employees.surname, ' ', employees.firstname, ' ', employees.lastname) employeeFullName, concat (clients.surname, ' ', clients.firstname, ' ', clients.lastname) clientFullName, text_of_contract, sum_of_contract, date_of_onclusion_contract
+FROM contracts
+INNER JOIN types_of_insurance ON contracts.type_of_insurance_id =types_of_insurance.type_of_insurance_id
+INNER JOIN employees ON contracts.employee_id=employees.employee_id
+INNER JOIN clients ON contracts.client_id=clients.client_id
+ORDER BY contract_id ASC;
+---
+
+CREATE VIEW all_types_of_insurance_view AS
+SELECT type_of_insurance_id, type_of_insurance FROM types_of_insurance;
+
+CREATE VIEW all_clients_view AS
+SELECT client_id,  clients.surname, clients.firstname, clients.lastname, date_of_birth, social_status_of_clients.social_status, cities.city, address, phone_number FROM clients
+INNER JOIN social_status_of_clients ON clients.social_status_id=social_status_of_clients.social_status_id
+INNER JOIN cities ON clients.city_id=cities.city_id
+ORDER BY client_id ASC;
+
+CREATE VIEW all_social_status_of_clients_view AS
+SELECT social_status_id, social_status FROM social_status_of_clients;
+
+CREATE VIEW all_cities_view AS
+SELECT city_id, city FROM cities;
+
+-- модифицируемое представление, используя механизм триггеров
+-- ставит все символы поля тип_собсвтенности в верхний герист. Однако при добавлении в представление нужн оуказывать ID!!!!!!
+CREATE OR REPLACE FUNCTION ins_update_property_types_view()
+RETURNS TRIGGER
+AS $$
+BEGIN
+	INSERT INTO property_types VALUES(NEW.type_id, UPPER(NEW.property_type));
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER instiead_update_property_types_view INSTEAD OF INSERT ON all_property_types_view
+FOR EACH ROW EXECUTE PROCEDURE ins_update_property_types_view();
+
+DROP TRIGGER instiead_update_property_types_view ON all_property_types_view;
+
+SELECT * FROM all_property_types_view;
+INSERT INTO all_property_types_view VALUES(12, 'SSS');
+
+UPDATE all_property_types_view SET property_type = 'SSS' WHERE type_id =1;
+
+
+INSERT INTO all_property_types_view VALUES((SELECT type_id FROM property_types ORDER BY type_id DESC LIMIT 1) + 1, 'SSшsS');
