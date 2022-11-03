@@ -429,4 +429,196 @@ EXECUTE PROCEDURE update_ismain_branch();
 	
 </details>
 
+<details>
+<summary>
+	
+## Queries
+	
+</summary>
+
+- Inner Join With Foreign Key1
+
+```
+SELECT branch_id, branch_name, cities.city, is_main,
+			branches.address, branches.phone_number, branches.opening_year, number_of_employees
+			FROM branches
+			INNER JOIN cities ON branches.city_id=cities.city_id
+			WHERE branches.city_id = {0}
+			GROUP BY branch_id, cities.city	
+```
+	
+- Inner Join With Foreign Key2
+
+```
+SELECT employee_id, employees.surname, employees.firstname,
+			employees.lastname, concat (branches.branch_name, ', ', cities.city) branchAndCity
+			FROM employees
+			INNER JOIN branches ON employees.branch_id=branches.branch_id
+			INNER JOIN cities ON branches.city_id=cities.city_id
+			WHERE employees.branch_id = {0}
+			GROUP BY employee_id, branchAndCity;
+```
+	
+- left Outer Join
+
+```
+SELECT branch_id, branch_name, companies.company_name, city, is_main, number_of_employees
+			FROM branches
+			LEFT OUTER JOIN companies ON branches.company_id = companies.company_id AND companies.license_photo IS NOT NULL
+			LEFT OUTER JOIN cities ON branches.city_id= cities.city_id
+			ORDER BY branch_id ASC
+```
+	
+- right Outer Join
+
+```
+SELECT property_types.type_id , property_type , companies.company_name FROM property_types
+			RIGHT OUTER JOIN companies ON companies.type_id = property_types.type_id AND companies.license_photo IS NOT NULL
+			ORDER BY property_types.type_id ASC
+```
+	
+- query On Query By Left Join Principle
+
+```
+SELECT companies.company_id, 
+			(SELECT company_name FROM companies WHERE cmp.company_id = companies.company_id)
+			FROM companies
+			LEFT OUTER JOIN(SELECT DISTINCT company_id FROM branches
+			WHERE is_main = true) cmp ON cmp.company_id = companies.company_id
+			GROUP BY companies.company_id, cmp.company_id
+			ORDER BY companies.company_id
+```
+	
+- total Including
+
+```
+SELECT COUNT(client_id),
+			SUM(CASE WHEN current_date - date_of_birth >= 18*365  AND current_date - date_of_birth< 20*365 THEN 1 ELSE 0 
+			END) AS about18yoLower20yo,
+			SUM(CASE WHEN current_date - date_of_birth >= 20 * 365  AND current_date - date_of_birth < 30 * 365 THEN 1 ELSE 0 
+			END) AS about20yoLower30yo,
+			SUM(CASE WHEN current_date - date_of_birth >= 30 * 365  AND current_date - date_of_birth < 45 * 365 THEN 1 ELSE 0
+			END) AS about30yoLower45yo,
+			SUM(CASE WHEN current_date - date_of_birth >= 45 * 365 THEN 1 ELSE 0
+			END) AS about45yo
+			FROM clients
+```
+	
+- summary Queries With Condition On Data By Value
+
+```
+SELECT clients.client_id,
+			concat (clients.surname, ' ', clients.firstname, ' ', clients.lastname) clientFullName, SUM(sum_of_contract)
+			FROM contracts
+			INNER JOIN clients ON contracts.client_id=clients.client_id
+			WHERE(SELECT SUM(sum_of_contract) FROM contracts WHERE contracts.client_id= clients.client_id) >= {0}
+			GROUP BY clients.client_id, clientFullName
+			ORDER BY clientFullName ASC	
+```
+	
+- summary Queries With Condition On Data By Mask
+
+```
+SELECT branch_id,
+			concat (branch_name, ', ', city) branchNameAndCity, phone_number FROM all_branches_view
+			WHERE phone_number LIKE '{0}%'
+			GROUP BY branch_id, branchNameAndCity, phone_number ORDER BY branch_id ASC
+```
+	
+- final Query With Condition On Data And Groups
+
+```
+SELECT company_name, COUNT(branches.branch_id)
+			FROM companies 
+			INNER JOIN branches ON branches.company_id=companies.company_id
+			WHERE branches.opening_year BETWEEN {1} AND {2}
+			GROUP BY company_name, companies.company_id
+			HAVING companies.company_id = {0}
+			ORDER BY company_name
+```
+	
+- request On Request Based On Principle Of Final Request
+
+```
+SELECT contract_id, types_of_insurance.type_of_insurance, 
+			concat (employees.surname, ' ', employees.firstname, ' ', employees.lastname) employeeFullName,
+			concat(clients.surname, ' ', clients.firstname, ' ', clients.lastname) clientFullName,
+			text_of_contract, sum_of_contract, date_of_onclusion_contract
+			FROM contracts
+			INNER JOIN types_of_insurance ON contracts.type_of_insurance_id =types_of_insurance.type_of_insurance_id 
+			INNER JOIN employees ON contracts.employee_id= employees.employee_id 
+			INNER JOIN clients ON contracts.client_id= clients.client_id
+			WHERE sum_of_contract > (SELECT avg(contracts.sum_of_contract) FROM contracts)
+			GROUP BY contract_id, type_of_insurance, employeeFullName, clientFullName, sum_of_contract
+			ORDER BY sum_of_contract
+```
+	
+- queries With Subqueries Using With
+
+```
+WITH employeeContracts AS 
+			(SELECT employee_id, concat (employees.surname, ' ', employees.firstname, ' ', employees.lastname) employeeFullName, 
+			(SELECT COUNT(contract_id) FROM contracts WHERE contracts.employee_id = employees.employee_id) as totalConracts 
+			FROM employees 
+			GROUP BY employees.employee_id), 
+			topEmployees AS( 
+			SELECT employee_id FROM employeeContracts 
+			WHERE totalConracts > (SELECT MAX(totalConracts) * 0.85 FROM employeeContracts)) 
+			SELECT employee_id, employeeFullName, totalConracts
+			FROM employeeContracts 
+			WHERE employee_id IN(SELECT employee_id FROM topEmployees) 
+			GROUP BY employee_id, employeeFullName, totalConracts
+			ORDER BY totalConracts DESC
+```
+	
+- special Query2 (Determine the average number of customers for each branch and for each company)
+
+```
+WITH companiesAndClients AS ( 
+			SELECT companies.company_id, company_name, AVG(DISTINCT clients.client_id ) as countOfCimpanyClietns FROM companies 
+			LEFT JOIN branches ON branches.company_id=companies.company_id 
+			LEFT JOIN employees ON employees.branch_id= branches.branch_id 
+			LEFT JOIN contracts ON contracts.employee_id = employees.employee_id 
+			LEFT JOIN clients ON contracts.client_id= clients.client_id 
+			GROUP BY  companies.company_id, company_name), 
+			branchesAndClients AS( 
+			SELECT branches.company_id, branches.branch_id, concat (branch_name, ', ', cities.city) branchAndCity, 
+			AVG(DISTINCT clients.client_id ) as countOfBranchClietns, is_main 
+			FROM branches 
+			INNER JOIN cities ON branches.city_id=cities.city_id 
+			LEFT JOIN employees ON employees.branch_id= branches.branch_id 
+			LEFT JOIN contracts ON contracts.employee_id = employees.employee_id 
+			LEFT JOIN clients ON contracts.client_id= clients.client_id 
+			GROUP BY branches.branch_id, branchAndCity) 
+			SELECT DISTINCT company_name, countOfCimpanyClietns, branchesAndClients.branchAndCity, branchesAndClients.countOfBranchClietns 
+			FROM companiesAndClients 
+			RIGHT OUTER JOIN branchesAndClients ON companiesAndClients.company_id = branchesAndClients.company_id AND branchesAndClients.is_main = true
+			ORDER BY company_name, branchAndCity 
+```
+	
+- special Query3 (Determine the number of clients attracted by insurance companies for a specified period (several years) and income from these transactions)
+
+```
+SELECT company_name, count( DISTINCT clients.client_id ) as countOfCompanyClietns,
+			SUM(sum_of_contract) as sumOfCompcontracts 
+			FROM companies 
+			LEFT JOIN branches ON branches.company_id=companies.company_id 
+			LEFT JOIN employees ON employees.branch_id=branches.branch_id 
+			LEFT JOIN contracts ON contracts.employee_id = employees.employee_id 
+			LEFT JOIN clients ON contracts.client_id= clients.client_id 
+			WHERE date_of_onclusion_contract BETWEEN {0} AND {1} 
+			GROUP BY company_name 
+			UNION ALL 
+			SELECT 'ВСЕГО', count(DISTINCT clients.client_id ) as countOfCompanyClietns, SUM(sum_of_contract) as sumOfCompcontracts 
+			FROM companies 
+			LEFT JOIN branches ON branches.company_id=companies.company_id 
+			LEFT JOIN employees ON employees.branch_id= branches.branch_id 
+			LEFT JOIN contracts ON contracts.employee_id = employees.employee_id 
+			LEFT JOIN clients ON contracts.client_id= clients.client_id 
+			WHERE date_of_onclusion_contract BETWEEN {0} AND {1} 
+			ORDER BY countOfCompanyClietns DESC, sumOfCompcontracts DESC, company_name DESC 
+```
+	
+</details>
+
 # About application
