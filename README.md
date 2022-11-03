@@ -622,3 +622,43 @@ SELECT company_name, count( DISTINCT clients.client_id ) as countOfCompanyClietn
 </details>
 
 # About application
+
+<details>
+<summary>
+	
+## USER'S MANUAL
+	
+</summary>
+
+For the correct operation of the program, a computer with Windows 7 or higher is required.
+
+To work with the program, you need to run the DB_Kursach.exe executable file.
+
+Authorization is required to continue working with the program. If the correct data is entered, the authorization window will close and the main menu will start. Otherwise, the program will give an authorization error.
+To switch between tables, directories, queries and other elements, there is a top panel of the main menu. All the elements of the main menu panel have self-explanatory names and are intuitive.
+To the right of each table there are buttons: add an entry, delete an entry, edit an entry, select all elements, search, update. These buttons are visualized as icons.
+
+Clicking on the buttons for adding a record, editing a record, search, will open a new form of the corresponding action and the table on which they were clicked. In this form, you must fill in the proposed fields and click the summary button.
+
+The search form provides for empty fields, the add and edit form reports an error with empty fields or incorrect data. The search result is displayed in the corresponding table. You can return to the original table by selecting it in the main menu bar.
+
+By clicking on the delete button, only the selected rows of the corresponding table are deleted. Delete can be used after applying the search.
+
+The Select All Items button will select all the items in the table on which the button was pressed. If all elements have already been selected, the selection will be deselected.
+You can select one or many elements directly on the table using LMB.
+
+The update button updates the corresponding table but does not send any query.
+
+There is a compound form for items from the Customers table. To open a composite form, it is enough to double-click on the required element from the "Clients" table. The compound form has three sorting buttons: by date, by amount, and by type. The compound form has buttons similar to the main menu for adding, deleting, editing, selecting all elements, and updating. By clicking on the button for adding an entry, a form for adding a contract will open, similar to the form for adding any other entry, except that you cannot change the client's data.
+
+Through the main menu bar you can get to the "Requests" form. When working with the Requests form, the buttons for adding, deleting, editing, and searching for records are not available. This form has: a drop-down list with implemented queries, various data entry fields, an “Apply” button and an “Export to Excel” button. Data entry fields become available and vice versa depending on the selected query. The "Export to Excel" button becomes available after the request is successfully completed.
+ You can export to an Excel document the result of each of the submitted queries. When exporting, the user chooses the place and names of the Excel document. After saving the document, the user is prompted to open it immediately.
+The main menu panel in the "Queries" section contains the following types: one-dimensional (in the form of a pyramid), columnar, three-dimensional columnar. Diagrams are opened in a separate window and are intended to visualize some queries.
+The other list contains buttons for generating elements, clearing elements, and help.
+
+Generation fills all tables and directories. In this case, the data of directories is filled with data for directories from files, and is not generated. Therefore, there is no need to fill in reference books before generation. You can generate data multiple times. At the same time, if the directory files are not updated, the contents of the directories will remain unchanged. In the tables whose data is generated, the old values ​​will remain and new ones will be added.
+Clearing all items deletes the data of all tables and updates the values ​​of all IDs.
+
+The help button opens a file containing the user manual.
+	
+</details>
