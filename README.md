@@ -537,7 +537,7 @@ SELECT company_name, COUNT(branches.branch_id)
 			ORDER BY company_name
 ```
 	
-- request On Request Based On Principle Of Final Request
+- request On Request Based On Principle Of Final Request (Display information about contracts, the amount of which exceeds the average amount)
 
 ```
 SELECT contract_id, types_of_insurance.type_of_insurance, 
@@ -553,7 +553,7 @@ SELECT contract_id, types_of_insurance.type_of_insurance,
 			ORDER BY sum_of_contract
 ```
 	
-- queries With Subqueries Using With
+- queries With Subqueries Using With (display top employees by the number of signed contracts)
 
 ```
 WITH employeeContracts AS 
