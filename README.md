@@ -662,3 +662,32 @@ Clearing all items deletes the data of all tables and updates the values ​​o
 The help button opens a file containing the user manual.
 	
 </details>
+	
+<details>
+<summary>
+	
+## Screens of views
+	
+</summary>
+
+- Table clietns (or any table)
+
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/table_clients.png)
+	
+- View clients-contracts
+	
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/client_contracts.png)
+	
+- Add company (any other - same)
+	
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/client_contracts.png)
+	
+- Example of query
+	
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/queries.png)
+	
+- Example of import query result to Excele
+	
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/export_to_exel.png)
+	
+</details>
