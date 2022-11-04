@@ -1,5 +1,5 @@
 # Database_Insurance-companies-term-paper-
-Database (PSQL) and Windowf Forms application to work with it.
+Database (PSQL) and Windows Forms application to work with it.
 
 # Database Diagram
 
