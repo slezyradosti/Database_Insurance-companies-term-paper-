@@ -3,7 +3,7 @@ Database (PSQL) and Windows Forms application to work with it.
 
 # Database Diagram
 
-![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white) eng.jpg)
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)_eng.jpg)
 
 # About Database
 <details>
