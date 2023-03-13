@@ -2,30 +2,22 @@
 Database (PSQL) and Windows Forms application to work with it.
 
 # Database Diagram
-
+<details>
+	
 ## English
 	
 </summary>
 
-` ![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg) `
-	
-</details>
-	
-<details>
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg)
+
 <summary>
 
-## Russian
-	
+## Russian	
 </summary>
 
-` ![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg) `
-	
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg)
+
 </details>
-	
-<details>
-<summary>
-
-
 
 # About Database
 <details>
