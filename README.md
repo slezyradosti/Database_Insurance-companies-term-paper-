@@ -3,6 +3,7 @@ Database (PSQL) and Windows Forms application to work with it.
 
 # Database Diagram
 <details>
+<summary>
 	
 ## English
 	
@@ -10,12 +11,16 @@ Database (PSQL) and Windows Forms application to work with it.
 
 ![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg)
 
-<summary>
+</details>
 
-## Russian	
+<details>
+<summary>	
+	
+## Russian
+	
 </summary>
 
-![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white)%20eng.jpg)
+![](https://github.com/slezyradosti/Database_Insurance-companies-term-paper-/blob/main/DB_Kursach/Pictures/for%20github/db_diagram(white).jpg)
 
 </details>
 
